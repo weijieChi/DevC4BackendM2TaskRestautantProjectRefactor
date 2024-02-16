@@ -83,13 +83,28 @@ header {
     height: 115px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .restaurant-show-title {
     font-size: 2rem;
   }
 }
+
 @media screen and (max-width: 575px) {
   .card img {
     height: auto;
   }
+}
+
+/* 新增 */
+a {
+  text-decoration: none;
+}
+
+.card-button {
+  text-align: end;
+}
+
+.card-button a {
+  padding: 2px 3px;
 }

@@ -11,13 +11,33 @@ app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', './views')
 
+//database
+const db = require('./models')
+const Restaurant = db.Restaurant
+
 // middleware
 // static file
 app.use(express.static('public'))
 
+app.use(express.urlencoded({ extended: true }))
+
 // router
 app.get('/', (req, res) => {
-  res.render('index')
+  res.redirect('/restaurants')
+})
+
+app.get('/restaurants', (req, res) => {
+  Restaurant.findAll({
+    attributes: ['id', 'name', 'category', 'image'],
+    raw: true
+  })
+    .then((restaurants) => {
+      res.render('restaurants', { restaurants })
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+  // res.render('restaurants')
 })
 
 // listen
