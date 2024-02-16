@@ -15,11 +15,16 @@ app.set('views', './views')
 const db = require('./models')
 const Restaurant = db.Restaurant
 
+// method-override
+const methodOverrid = require('method-override')
+
 // middleware
 // static file
 app.use(express.static('public'))
 
 app.use(express.urlencoded({ extended: true }))
+
+app.use(methodOverrid('_method'))
 
 // router
 app.get('/', (req, res) => {
