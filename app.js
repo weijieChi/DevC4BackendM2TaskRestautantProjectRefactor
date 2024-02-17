@@ -21,9 +21,9 @@ const methodOverrid = require('method-override')
 // middleware
 // static file
 app.use(express.static('public'))
-
+// x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
-
+// method-override
 app.use(methodOverrid('_method'))
 
 // router
@@ -42,7 +42,26 @@ app.get('/restaurants', (req, res) => {
     .catch((err) => {
       console.error(err)
     })
-  // res.render('restaurants')
+})
+
+// app.get('/restaurants/new', (req, res) => {
+
+// })
+
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  // 本本想找有沒有類似 SELECT * FROM `restaurants` WHERE `id` = id 之類的指令，但是沒有找到
+  Restaurant.findByPk(id, {
+    attributes: ['id', 'name', 'category', 'image', 'location', 'phone', 'google_map', 'description'],
+    raw: true
+  })
+    .then((restaurant) => {
+      //
+      res.render('detail', { restaurant })
+    })
+    .catch((err) => {
+      console.error(err)
+    })
 })
 
 // listen
