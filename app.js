@@ -40,8 +40,27 @@ app.get('/restaurants/new', (req, res) => {
 
 app.post('/resraurants', (req, res) => {
   // const restaurant = req.body
-  console.log(req.body)
-  res.send(req.body)
+  const data = (req.body)
+  // console.log(data)
+  // console.log(typeof (data))
+  return Restaurant.create({
+    name: data.name,
+    category: data.category,
+    image: data.image,
+    location: data.location,
+    phone: data.phone,
+    google_map: data.google_map,
+    description: data.description
+  })
+    .then(() => {
+      res.redirect('/restaurants')
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+  // res.redirect('/restaurants')
+  // console.log(req.body)
+  // res.send(data)
 })
 
 app.get('/restaurants', (req, res) => {

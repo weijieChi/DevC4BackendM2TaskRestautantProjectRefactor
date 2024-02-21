@@ -1,4 +1,5 @@
 <div class="container">
+  <button id="add-value" class="btn btn-primary">add-value</button>
   <div class="row">
     <h1 class="col-md-4 text-center">新增餐廳</h1>
   </div>
@@ -81,20 +82,33 @@
 <script src="/javascripts/new.js"></script> --}}
 
 <script>
-  (function () {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
+  const addValue = document.querySelector('#add-value')
+  function addValueToForm() {
+    document.querySelector('#name').value = '梅子鰻蒲燒專賣店';
+    document.querySelector('#category').value = '日式';
+    document.querySelector('#image').value = 'https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5628/02.jpg';
+    document.querySelector('#location').value = '台北市中山區林森北路 107 巷 8 號';
+    document.querySelector('#phone').value = '02 2521 2813';
+    document.querySelector('#google_map').value = 'https://goo.gl/maps/cUJEmFSRKyH2';
+    document.querySelector('#description').textContent = '鰻魚、鰻魚飯、真空鰻魚';
+  }
 
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
+  addValue.addEventListener('click', addValueToForm)
+
+    (function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
 </script>
