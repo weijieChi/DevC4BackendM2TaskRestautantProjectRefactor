@@ -17,9 +17,13 @@
 </div>
 <div class="container mt-5">
   <div class="row">
+    <div class="row">
+      <div class="col-12">
+        <a href="/restaurants/new">新增餐廳</a>
+      </div>
+    </div>
     <div class="col-md-10 col-12 mx-auto">
-      <div class="row row-cols-sm-3">
-
+      <div class="row row-cols-sm-3 restautants-list">
         {{#each restaurants as |restaurant|}}
         <span class="text-secondary">
           <div class="card mb-3">
@@ -36,16 +40,28 @@
                 <a href="/restaurants/{{restaurant.id}}">
                   <button class="btn btn-info">Detail</button>
                 </a>
-                <a href="#">
-                  <button class="btn btn-danger">Delete</button>
-                </a>
+                <form action="/restaurants/{{restaurant.id}}?_method=DELETE" class="restaurant-delete" method="POST"
+                  style="display: inline;">
+                  <button class="btn btn-danger" type="submit">delete</button>
+                </form>
               </div>
             </div>
           </div>
         </span>
         {{/each}}
-
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  const deleteEvent = document.querySelector('.restautants-list')
+  deleteEvent.addEventListener('submit', (submitEvent) => {
+    if (submitEvent.target.matches('.restaurant-delete')) {
+      if (!confirm('您確定要刪除該筆資料嗎？')) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+    }
+  })
+</script>

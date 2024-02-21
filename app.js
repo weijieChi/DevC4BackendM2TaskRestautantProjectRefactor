@@ -21,13 +21,12 @@ const methodOverrid = require('method-override')
 // middleware
 // static file
 app.use(express.static('public'))
-// x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }))
+
 // method-override
 app.use(methodOverrid('_method'))
-// bodyParser
-app.use(express.json());
+// bodyParser & x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // router
 app.get('/', (req, res) => {
@@ -39,10 +38,7 @@ app.get('/restaurants/new', (req, res) => {
 })
 
 app.post('/resraurants', (req, res) => {
-  // const restaurant = req.body
   const data = (req.body)
-  // console.log(data)
-  // console.log(typeof (data))
   return Restaurant.create(data)
     .then(() => {
       res.redirect('/restaurants')
@@ -89,7 +85,6 @@ app.get('/restaurants/:id/edit', (req, res) => {
     raw: true
   })
     .then((restaurant) => {
-      //
       res.render('edit', { restaurant })
     })
     .catch((err) => {
@@ -103,6 +98,17 @@ app.put('/resraurants/:id', (req, res) => {
   Restaurant.update(data, { where: { id } })
     .then(() => {
       res.redirect(`/restaurants/${id}`)
+    })
+})
+
+app.delete('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  Restaurant.destroy({ where: { id } })
+    .then(() => {
+      res.redirect('/restaurants')
+    })
+    .catch((err) => {
+      console.error(err)
     })
 })
 

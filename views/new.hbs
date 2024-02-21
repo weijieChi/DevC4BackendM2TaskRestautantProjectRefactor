@@ -78,28 +78,10 @@
 
 
 </div>
-{{!--
-<script src="/javascripts/new.js"></script> --}}
+
+<script src="/javascripts/new.js"></script>
 
 <script>
-
-  (function () {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
-
   const addValue = document.querySelector('#add-value')
   function addValueToForm() {
     document.querySelector('#name').value = '梅子鰻蒲燒專賣店';
@@ -110,7 +92,5 @@
     document.querySelector('#google_map').value = 'https://goo.gl/maps/cUJEmFSRKyH2';
     document.querySelector('#description').textContent = '鰻魚、鰻魚飯、真空鰻魚';
   }
-
   addValue.addEventListener('click', addValueToForm)
-
 </script>

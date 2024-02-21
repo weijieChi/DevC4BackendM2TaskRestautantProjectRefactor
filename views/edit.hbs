@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1 class="col-md-4 text-center">新增餐廳</h1>
+    <h1 class="col-md-4 text-center">修改餐廳資料</h1>
   </div>
   <form action="/resraurants/{{restaurant.id}}?_method=PUT" class="row g-3 needs-validation" id="add-restaurant"
     method="post" novalidate>
@@ -12,7 +12,6 @@
         請輸入餐廳名稱
       </div>
     </div>
-
     <div class="col-md-4">
       <label for="category" class="form-label">餐廳類型：</label>
       <select class="form-select" id="category" name="category" required>
@@ -78,26 +77,8 @@
       <button class="btn btn-primary" type="submit">修改餐廳資料</button>
     </div>
   </form>
-
-
 </div>
-
+<script src="/javascripts/new.js"></script>
 <script>
   document.querySelector('#category').value = '{{restaurant.category}}';
-  (function () {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
 </script>
