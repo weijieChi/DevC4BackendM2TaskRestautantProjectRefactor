@@ -1,12 +1,13 @@
 <div class="container">
-  <button id="add-value" class="btn btn-primary">add-value</button>
   <div class="row">
     <h1 class="col-md-4 text-center">新增餐廳</h1>
   </div>
-  <form action="/resraurants" class="row g-3 needs-validation" id="add-restaurant" method="post" novalidate>
+  <form action="/resraurants/{{restaurant.id}}?_method=PUT" class="row g-3 needs-validation" id="add-restaurant"
+    method="post" novalidate>
     <div class="col-md-4">
       <label for="name" class="form-label">餐廳名稱：</label>
-      <input type="text" class="form-control" name="name" id="name" value="" placeholder="請輸入店家名稱" required>
+      <input type="text" class="form-control" name="name" id="name" value="{{restaurant.name}}" placeholder="請輸入店家名稱"
+        required>
       <div class="invalid-feedback">
         請輸入餐廳名稱
       </div>
@@ -34,30 +35,32 @@
     </div>
     <div class="col-md-4">
       <label for="image" class="form-label">餐廳圖片連結：</label>
-      <input type="url" class="form-control" name="image" id="image" value="" placeholder="圖片連結網址" required>
+      <input type="url" class="form-control" name="image" id="image" value="{{restaurant.image}}" placeholder="圖片連結網址"
+        required>
       <div class="invalid-feedback">
         請輸入正確的圖片連結
       </div>
     </div>
     <div class="col-md-4">
       <label for="location" class="form-label">地址：</label>
-      <input type="text" class="form-control" name="location" id="location" value="" placeholder="請輸入餐廳地址" required>
+      <input type="text" class="form-control" name="location" id="location" value="{{restaurant.location}}"
+        placeholder="請輸入餐廳地址" required>
       <div class="invalid-feedback">
         請輸入正確格式的地址
       </div>
     </div>
     <div class="col-md-4">
       <label for="phone" class="form-label">電話：</label>
-      <input type="tel" class="form-control" name="phone" id="phone" value="" placeholder="請輸入餐廳電話" inputmode="tel"
-        required>
+      <input type="tel" class="form-control" name="phone" id="phone" value="{{restaurant.phone}}" placeholder="請輸入餐廳電話"
+        inputmode="tel" required>
       <div class="invalid-feedback">
         請輸入正確的電話格式
       </div>
     </div>
     <div class="col-md-4">
       <label for="google_map" class="form-label">Google 地圖連結</label>
-      <input type="url" class="form-control" placeholder="請輸入 Google 地圖連結" name="google_map" id="google_map" value=""
-        required>
+      <input type="url" class="form-control" placeholder="請輸入 Google 地圖連結" name="google_map" id="google_map"
+        value="{{restaurant.google_map}}" required>
       <div class="invalid-feedback">
         請輸入正確的 Google 地圖連結
       </div>
@@ -65,24 +68,22 @@
     <div class="col-md-12">
       <label for="description" class="form-label">餐廳介紹：</label>
       <textarea class="form-control" name="description" id="description" placeholder="請輸入關於這家餐廳的介紹" value=""
-        required></textarea>
+        required>{{restaurant.description}}</textarea>
       <div class="invalid-feedback">
         請輸入介紹內容
       </div>
     </div>
 
     <div class="col-12">
-      <button class="btn btn-primary" type="submit">新增餐廳</button>
+      <button class="btn btn-primary" type="submit">修改餐廳資料</button>
     </div>
   </form>
 
 
 </div>
-{{!--
-<script src="/javascripts/new.js"></script> --}}
 
 <script>
-
+  document.querySelector('#category').value = '{{restaurant.category}}';
   (function () {
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation')
@@ -99,18 +100,4 @@
         }, false)
       })
   })()
-
-  const addValue = document.querySelector('#add-value')
-  function addValueToForm() {
-    document.querySelector('#name').value = '梅子鰻蒲燒專賣店';
-    document.querySelector('#category').value = '日本料理';
-    document.querySelector('#image').value = 'https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5628/02.jpg';
-    document.querySelector('#location').value = '台北市中山區林森北路 107 巷 8 號';
-    document.querySelector('#phone').value = '02 2521 2813';
-    document.querySelector('#google_map').value = 'https://goo.gl/maps/cUJEmFSRKyH2';
-    document.querySelector('#description').textContent = '鰻魚、鰻魚飯、真空鰻魚';
-  }
-
-  addValue.addEventListener('click', addValueToForm)
-
 </script>

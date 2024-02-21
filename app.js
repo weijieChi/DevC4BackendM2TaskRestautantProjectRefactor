@@ -43,24 +43,13 @@ app.post('/resraurants', (req, res) => {
   const data = (req.body)
   // console.log(data)
   // console.log(typeof (data))
-  return Restaurant.create({
-    name: data.name,
-    category: data.category,
-    image: data.image,
-    location: data.location,
-    phone: data.phone,
-    google_map: data.google_map,
-    description: data.description
-  })
+  return Restaurant.create(data)
     .then(() => {
       res.redirect('/restaurants')
     })
     .catch((err) => {
       console.error(err)
     })
-  // res.redirect('/restaurants')
-  // console.log(req.body)
-  // res.send(data)
 })
 
 app.get('/restaurants', (req, res) => {
@@ -89,6 +78,31 @@ app.get('/restaurants/:id', (req, res) => {
     })
     .catch((err) => {
       console.error(err)
+    })
+})
+
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  console.log(id)
+  Restaurant.findByPk(id, {
+    attributes: ['id', 'name', 'category', 'image', 'location', 'phone', 'google_map', 'description'],
+    raw: true
+  })
+    .then((restaurant) => {
+      //
+      res.render('edit', { restaurant })
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+})
+
+app.put('/resraurants/:id', (req, res) => {
+  const id = req.params.id
+  const data = req.body
+  Restaurant.update(data, { where: { id } })
+    .then(() => {
+      res.redirect(`/restaurants/${id}`)
     })
 })
 
