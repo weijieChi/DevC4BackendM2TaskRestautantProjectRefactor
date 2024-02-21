@@ -25,10 +25,23 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 // method-override
 app.use(methodOverrid('_method'))
+// bodyParser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // router
 app.get('/', (req, res) => {
   res.redirect('/restaurants')
+})
+
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/resraurants', (req, res) => {
+  // const restaurant = req.body
+  console.log(req.body)
+  res.send(req.body)
 })
 
 app.get('/restaurants', (req, res) => {
@@ -43,10 +56,6 @@ app.get('/restaurants', (req, res) => {
       console.error(err)
     })
 })
-
-// app.get('/restaurants/new', (req, res) => {
-
-// })
 
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id

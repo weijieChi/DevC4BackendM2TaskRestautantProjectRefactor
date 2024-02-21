@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <h1 class="col-md-4 text-center">新增餐廳</h1>
+  </div>
+  <form action="/resraurants" class="row g-3 needs-validation" id="add-restaurant" method="post" novalidate>
+    <div class="col-md-4">
+      <label for="name" class="form-label">餐廳名稱：</label>
+      <input type="text" class="form-control" name="name" id="name" value="" placeholder="請輸入店家名稱" required>
+      <div class="invalid-feedback">
+        請輸入餐廳名稱
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="category" class="form-label">餐廳類型：</label>
+      <select class="form-select" id="category" name="category" required>
+        <option selected disabled value="">請選擇餐廳類型</option>
+        <option value="美式">美式</option>
+        <option value="日式">日式</option>
+        <option value="義式">義式</option>
+        <option value="法式">法式</option>
+        <option value="德式">德式</option>
+        <option value="其他歐式">其他歐式</option>
+        <option value="中東">中東</option>
+        <option value="東南亞">東南亞</option>
+        <option value="酒吧">酒吧</option>
+        <option value="咖啡廳">咖啡廳</option>
+        <option value="其他">其他</option>
+      </select>
+      <div class="invalid-feedback">
+        請選擇餐廳類型
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="image" class="form-label">餐廳圖片連結：</label>
+      <input type="url" class="form-control" name="image" id="image" value="" placeholder="圖片連結網址" required>
+      <div class="invalid-feedback">
+        請輸入正確的圖片連結
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="location" class="form-label">地址：</label>
+      <input type="text" class="form-control" name="location" id="location" value="" placeholder="請輸入餐廳地址" required>
+      <div class="invalid-feedback">
+        請輸入正確格式的地址
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="phone" class="form-label">電話：</label>
+      <input type="tel" class="form-control" name="phone" id="phone" value="" placeholder="請輸入餐廳電話" inputmode="tel"
+        required>
+      <div class="invalid-feedback">
+        請輸入正確的電話格式
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="google_map" class="form-label">Google 地圖連結</label>
+      <input type="url" class="form-control" placeholder="請輸入 Google 地圖連結" name="google_map" id="google_map" value=""
+        required>
+      <div class="invalid-feedback">
+        請輸入正確的 Google 地圖連結
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label for="description" class="form-label">餐廳介紹：</label>
+      <textarea class="form-control" name="description" id="description" placeholder="請輸入關於這家餐廳的介紹" value=""
+        required></textarea>
+      <div class="invalid-feedback">
+        請輸入介紹內容
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">新增餐廳</button>
+    </div>
+  </form>
+
+
+</div>
+{{!--
+<script src="/javascripts/new.js"></script> --}}
+
+<script>
+  (function () {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
