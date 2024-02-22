@@ -1,5 +1,5 @@
 因為原本我就已經有 MySQL 練習環境，所以在 config/config.json 的 password 是 `root` ，助教在批改時候再看要不再改成 `password`
-因為題目沒有要求搜尋功能，所以我間 disable 搜尋的功能
+因為題目沒有要求搜尋功能，所以我先 disable 搜尋的功能
 
 # 餐廳收藏資網站料庫 CRUD 操作作業
 在伺服器啟動期間使用者在瀏覽器輸入 http://localhost:3000/ 會開啟網站頁面
