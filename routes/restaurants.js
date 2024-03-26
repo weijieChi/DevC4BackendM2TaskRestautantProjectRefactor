@@ -12,7 +12,7 @@ router.get('/new', (req, res) => {
   res.render('new')
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const data = (req.body)
   return Restaurant.create(data)
     .then(() => {
@@ -20,6 +20,7 @@ router.post('/', (req, res) => {
     })
     .catch((err) => {
       console.error(err)
+      next(err)
     });
 });
 
