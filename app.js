@@ -21,7 +21,7 @@ app.set('view engine', '.hbs');
 app.set('views', './views')
 
 // method-override
-const methodOverrid = require('method-override')
+const methodOverrid = require('method-override');
 
 // middleware
 // middlewares message-handler
@@ -30,10 +30,10 @@ const messageHandler = require('./middlewares/message-handler');
 const errorHandler = require('./middlewares/error-handler');
 
 // static file
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 // method-override
-app.use(methodOverrid('_method'))
+app.use(methodOverrid('_method'));
 // bodyParser & x-www-form-urlencoded to json
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -52,12 +52,13 @@ app.use(flash());
 app.use(messageHandler);
 
 // router
-app.use(router)
+app.use(router);
 
 // middlewares error-handler
 app.use(errorHandler);
 
 // listen
 app.listen(port, () => {
-  console.log(`express server on http://localhost:${port}`)
-})
+  console.log('\x1b[33m%s\x1b[0m', new Date().toLocaleTimeString());
+  console.log(`express server on http://localhost:${port}`);
+});

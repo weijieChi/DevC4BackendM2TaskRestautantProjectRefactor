@@ -1,9 +1,10 @@
 <div class="container">
+  {{> message}}
   <button id="add-value" class="btn btn-primary">add-value</button>
   <div class="row">
     <h1 class="col-md-4 text-center">新增餐廳</h1>
   </div>
-  <form action="/resraurants" class="row g-3 needs-validation" id="add-restaurant" method="post" novalidate>
+  <form action="/restaurants" class="row g-3 needs-validation" id="add-restaurant" method="post" novalidate>
     <div class="col-md-4">
       <label for="name" class="form-label">餐廳名稱：</label>
       <input type="text" class="form-control" name="name" id="name" value="" placeholder="請輸入店家名稱" required>
@@ -72,7 +73,7 @@
     </div>
 
     <div class="col-12">
-      <button class="btn btn-primary" type="submit">新增餐廳</button>
+      <button class="btn btn-primary" type="submit">儲存餐廳資料</button>
     </div>
   </form>
 
