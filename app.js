@@ -29,6 +29,10 @@ const messageHandler = require('./middlewares/message-handler');
 // middlewares error-handler
 const errorHandler = require('./middlewares/error-handler');
 
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config()
+}
+
 // static file
 app.use(express.static('public'));
 
@@ -40,7 +44,7 @@ app.use(express.json());
 
 // exoress-session
 app.use(session({
-  secret: 'useAnyString', // process.env.SESSION_SECRET
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));

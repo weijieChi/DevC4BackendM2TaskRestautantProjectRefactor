@@ -48,3 +48,53 @@ npm run start
 6. 在瀏覽器網址列輸入 `http://localhost:3000/` 就可以打開網頁了
 
 7. 最後要關閉伺服器就在 terminal 案 `ctrl` + `C` 再按 `y` + `enter` 關閉 nodejs 伺服器。
+
+---
+
+## 環境變數設定方式
+
+### windows
+windows 開發環境使用者強烈建議使用 powershell ，因為 powershell 是現在微軟推薦並且有在維護的命令列環境工具，且 windows visual studio code 預設命令列工具就是 powershell
+**Powershell** 設定方式
+
+```ps1
+# 顯示環境變數方式，前面的 env 可以是任意大小寫
+$env:HomePath
+
+# 設定環境變數方式
+$Env:NODE_ENV="development"  # 字串要用單引號或是雙引號包住，不然系統會認為是函式或是類別
+
+# 移除環境變數方式 powershell 沒有刪除環境變數的指令，而是透過因 windows 不允許環境變視為空字串或是空值，所以只要將已經存在的環境變數設回空字串，系統就會將該環境變數移除
+$env:NODE_ENV=""
+```
+
+**命令提示字元 cmd.exe 設定方式**
+
+```cmd
+:: 顯示環境變數方式
+echo %HomePath%
+
+:: 設定環境變數方式
+set NODE_ENV=development
+
+:: 移除環境變數方式，一樣將環境變數設為空值即可，等號右邊沒有任何字元
+set NODE_ENV=
+```
+
+### UNIX Like (Linux, Mac OSX, FreeBSD 等)
+
+基本上 UNIX Like 作業系統 CLI 設定環境變數的方法大同小異
+
+```sh
+# 顯示環境變數，有兩種方式，範例分別如下
+# 1
+printenv HOME
+# 2
+echo $HOME
+
+# 設定環境變數
+export NODE_ENV=development
+
+# 刪除環境變數
+unset NODE_ENV
+```
