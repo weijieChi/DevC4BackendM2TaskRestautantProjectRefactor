@@ -23,11 +23,11 @@
 **步驟 Step**
 1. 先用 git clone 從 github repositories 複製檔案，使用 ssh 協定。
 ```sh
-git clone git@github.com:weijieChi/DevC4BackendM1TaskRestautantDatabaseCRUD.git
+git clone git@github.com:weijieChi/DevC4BackendM2TaskRestautantProjectRefactor.git
 ```
 2. 進入專案所在目錄
 ```sh
-cd ./DevC4BackendM1TaskRestautantDatabaseCRUD
+cd ./DevC4BackendM2TaskRestautantProjectRefactor
 ```
 3. 使用 npm 安裝執行所需的套件。
 ```sh
@@ -41,16 +41,40 @@ npx sequelize db:migrate
 ```sh
 npx sequelize db:seed:all
 ```
-5. 透過 npm 執行伺服器程式。
+6. 將環境變數 NODE_ENV 設為 `development` 否則程式執行將會出現錯誤
+
+**windws**
+建議使用 powershell 來設定
+```ps1
+# 設定環境變數方式
+$Env:NODE_ENV="development"  # 字串要用單引號或是雙引號包住，不然系統會認為是函式或是類別
+# 查看環境變數是否設定正確
+$env:NODE_ENV
+```
+**UNIX Like (Linux, Mac OSX, FreeBSD 等)**
+```sh
+# 設定環境變數
+export NODE_ENV=development
+# 查看環境變數是否設定正確
+printenv NODE_ENV
+```
+
+7. 因為有透過 dotnev 設定 session 加密字串環境變數，所以需要再專案跟目錄建立 `/.env` 檔案來設定加密字串，檔案內容如下
+```
+SESSION_SECRET=toUesSecret
+```
+
+8. 透過 npm 執行伺服器程式。
 ```sh
 npm run start
 ```
-6. 在瀏覽器網址列輸入 `http://localhost:3000/` 就可以打開網頁了
+9. 在瀏覽器網址列輸入 `http://localhost:3000/` 就可以打開網頁了
 
-7. 最後要關閉伺服器就在 terminal 案 `ctrl` + `C` 再按 `y` + `enter` 關閉 nodejs 伺服器。
+10. 最後要關閉伺服器就在 terminal 案 `ctrl` + `C` 再按 `y` + `enter` 關閉 nodejs 伺服器。
 
 ---
 
+# 補充
 ## 環境變數設定方式
 
 ### windows
